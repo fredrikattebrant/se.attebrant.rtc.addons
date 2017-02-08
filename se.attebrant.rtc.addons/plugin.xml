@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="com.ibm.magnolia.model.WorkItemHandle"
+            objectClass="com.ibm.team.workitem.common.model.IWorkItemHandle">
+         <action
+               class="se.attebrant.rtc.addons.actions.CopySummaryIdToClipboardAction"
+               enablesFor="+"
+               id="se.attebrant.rtc.addons.CopySummaryIdToClipboardAction"
+               label="Copy workitem Summary and ID"
+               menubarPath="clipboardGroup">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
