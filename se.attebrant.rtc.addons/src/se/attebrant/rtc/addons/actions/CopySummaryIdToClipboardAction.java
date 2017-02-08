@@ -45,7 +45,14 @@ public class CopySummaryIdToClipboardAction implements IObjectActionDelegate {
           IWorkItem workItem =
               auditableClient.findCachedAuditable(workItemHandle, IWorkItem.SMALL_PROFILE);
           int id = workItem.getId();
-          String summaryAndId = workItem.getHTMLSummary().getPlainText() + " : " + id;
+          String summary = workItem.getHTMLSummary().getPlainText();
+          String summaryAndId = summary + " : " + id;
+          int length = summaryAndId.length();
+          if (length > 72) {
+            String idSuffix = "...: " + id;
+            int remove = 72 - idSuffix.length() - 1;
+            summaryAndId = summary.substring(0, remove) + "...: " + id;
+          }
           if (summaryIds.length() > 0) {
             summaryIds.append(NEWLINE);
           }

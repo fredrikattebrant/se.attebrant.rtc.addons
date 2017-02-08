@@ -12,7 +12,7 @@
                class="se.attebrant.rtc.addons.actions.CopySummaryIdToClipboardAction"
                enablesFor="+"
                id="se.attebrant.rtc.addons.CopySummaryIdToClipboardAction"
-               label="Copy workitem Summary and ID"
+               label="Copy Summary and ID"
                menubarPath="clipboardGroup">
          </action>
       </objectContribution>
