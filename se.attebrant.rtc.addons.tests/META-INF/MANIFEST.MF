@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RTC Add-Ons Tests
+Bundle-SymbolicName: se.attebrant.rtc.addons.tests
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: se.attebrant.rtc.addons;bundle-version="1.0.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit
