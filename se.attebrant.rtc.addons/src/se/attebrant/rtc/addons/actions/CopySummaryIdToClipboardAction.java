@@ -18,11 +18,20 @@ import org.eclipse.ui.PlatformUI;
 
 import java.util.Iterator;
 
+/**
+ * Action which copies Summary : ID to the {@link Clipboard} for selected {@link IWorkItemHandle}s.
+ * The resulting text is truncated to a length of 72 characters (the summary part is shortened).
+ *
+ */
 public class CopySummaryIdToClipboardAction implements IObjectActionDelegate {
 
   private ISelection selection;
   private IWorkbenchPart workbenchPart;
-  private static final String NEWLINE = System.getProperty("line.separator"); 
+  private static final String NEWLINE = System.getProperty("line.separator");
+  private static final String SEPARATOR = " : ";
+  public static final String TRUNCATE_SEPARATOR = "..." + SEPARATOR;
+  public static final int TRUNCATE_SEPARATOR_LENGTH = TRUNCATE_SEPARATOR.length();
+  public static final int MAX_LENGTH = 72;
 
   public CopySummaryIdToClipboardAction() {
     super();
@@ -46,13 +55,7 @@ public class CopySummaryIdToClipboardAction implements IObjectActionDelegate {
               auditableClient.findCachedAuditable(workItemHandle, IWorkItem.SMALL_PROFILE);
           int id = workItem.getId();
           String summary = workItem.getHTMLSummary().getPlainText();
-          String summaryAndId = summary + " : " + id;
-          int length = summaryAndId.length();
-          if (length > 72) {
-            String idSuffix = "...: " + id;
-            int remove = 72 - idSuffix.length() - 1;
-            summaryAndId = summary.substring(0, remove) + "...: " + id;
-          }
+          String summaryAndId = truncateSummaryId(summary, id);
           if (summaryIds.length() > 0) {
             summaryIds.append(NEWLINE);
           }
@@ -76,7 +79,22 @@ public class CopySummaryIdToClipboardAction implements IObjectActionDelegate {
       }
     }
   }
-
+  
+  /**
+   * Returns the a "summary : id" string for the given {@link IWorkItemHandle}.
+   * Truncates the summary if the resulting string is longer that MAX_LENGTH. 
+   */
+  public String truncateSummaryId(String summary, int id) {
+    String summaryAndId = summary + SEPARATOR + id;
+    int length = summaryAndId.length();
+    if (length > MAX_LENGTH) {
+      String idSuffix = TRUNCATE_SEPARATOR + id;
+      int remove = MAX_LENGTH - idSuffix.length();
+      summaryAndId = summary.substring(0, remove) + idSuffix; 
+    }
+    return summaryAndId;
+  }
+ 
   @Override
   public void selectionChanged(IAction action, ISelection selection) {
     this.selection = selection;
