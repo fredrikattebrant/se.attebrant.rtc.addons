@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/se.attebrant.rtc.addons.feature_1.0.1.201703271447.jar" id="se.attebrant.rtc.addons.feature" version="1.0.1.201703271447">
+   <feature url="features/se.attebrant.rtc.addons.feature_1.0.2.201708121436.jar" id="se.attebrant.rtc.addons.feature" version="1.0.2.201708121436">
       <category name="se.attebrant.rtc.addons"/>
    </feature>
    <category-def name="se.attebrant.rtc.addons" label="Rational Team Concert Eclipse Client Add-Ons"/>

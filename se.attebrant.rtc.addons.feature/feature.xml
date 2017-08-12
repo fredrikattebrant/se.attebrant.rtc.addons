@@ -2,7 +2,7 @@
 <feature
       id="se.attebrant.rtc.addons.feature"
       label="Rational Team Concert Eclipse Client Add-Ons Feature"
-      version="1.0.1.qualifier"
+      version="1.0.2.qualifier"
       provider-name="Fredrik Attebrant">
 
    <description url="http://www.example.com/description">

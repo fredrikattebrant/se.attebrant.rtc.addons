@@ -29,9 +29,10 @@ public class CopySummaryIdToClipboardAction implements IObjectActionDelegate {
   private IWorkbenchPart workbenchPart;
   private static final String NEWLINE = System.getProperty("line.separator");
   private static final String SEPARATOR = " : ";
-  public static final String TRUNCATE_SEPARATOR = "..." + SEPARATOR;
+  public static final String TRUNCATE_SEPARATOR = "...";
   public static final int TRUNCATE_SEPARATOR_LENGTH = TRUNCATE_SEPARATOR.length();
   public static final int MAX_LENGTH = 72;
+  private static final int TRUNCATE_AT_POS = 30;
 
   public CopySummaryIdToClipboardAction() {
     super();
@@ -88,9 +89,10 @@ public class CopySummaryIdToClipboardAction implements IObjectActionDelegate {
     String summaryAndId = summary + SEPARATOR + id;
     int length = summaryAndId.length();
     if (length > MAX_LENGTH) {
-      String idSuffix = TRUNCATE_SEPARATOR + id;
-      int remove = MAX_LENGTH - idSuffix.length();
-      summaryAndId = summary.substring(0, remove) + idSuffix; 
+      int cutCount = length + TRUNCATE_SEPARATOR_LENGTH - MAX_LENGTH;
+      summaryAndId = summaryAndId.substring(0, TRUNCATE_AT_POS) 
+          + TRUNCATE_SEPARATOR
+          + summaryAndId.substring(TRUNCATE_AT_POS + cutCount, length); 
     }
     return summaryAndId;
   }
