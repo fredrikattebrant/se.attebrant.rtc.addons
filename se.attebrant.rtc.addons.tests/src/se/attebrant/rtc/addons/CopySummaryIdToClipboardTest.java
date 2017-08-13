@@ -17,7 +17,7 @@ public class CopySummaryIdToClipboardTest {
     doTestGetSummaryId(summary1, id1);
 
     String summary2 = "This is a longer text which will be truncated since it "
-        + "extends beyong the allowed max length";
+        + "extends beyond the allowed max length";
     int id2 = 654321;
     doTestGetSummaryId(summary2, id2);
   }
